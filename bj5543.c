@@ -9,7 +9,7 @@ int main() {
 
 	}
 	for (int i = 0; i < 2; i++) {
-		scanf_s("%d", &d);
+		scanf("%d", &d);
 		if (I == 0) I = d;
 		if (I > d) I = d;
 	}
