@@ -1,0 +1,29 @@
+#include <stdio.h>
+int main() {
+
+	int s, k, h;
+	scanf("%d %d %d", &s, &k, &h);
+	
+	int add = s + k + h;
+	if (add >= 100) {
+		printf("OK");
+	}
+	else {
+		int min = s;
+		if (k < min)
+		   min = k;
+		if (h < min)
+		   min = h;
+		   
+		if (min == k) {
+			printf("Korea");
+		}
+		else if (min == s) {
+			printf("Soongsil");
+		}
+		else {
+			printf("Hanyang");
+		}
+		return 0;
+	}
+}
