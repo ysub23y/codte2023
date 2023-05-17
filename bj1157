@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <string.h>
+
+char a[1000005];
+int arr[26]; //a ~ z까지
+
+int main() {
+    int max = 0;
+    int size;
+    char ans;
+
+    scanf("%s", a);
+    size = strlen(a); //입력 글자 개수
+
+    for (int i = 0;i < size;i++) // 글자 개수 중복 숫자 몇개인지 처리하는 과정
+        if (a[i] >= 'a') arr[a[i] - 'a']++; //소문자일 때 
+        else arr[a[i] - 'A']++; //대문자일 때
+     //arr[]값에 중복 숫자 갯수 저장되어있음.
+    for (int i = 0;i < 26;i++)
+        if (arr[i] == max) {
+            ans = '?'; // 최댓값이 같은 문자가 있을 때
+        }              //0인 부분이 있으면 ?였다가 아래에서 max값 수정
+        else if (arr[i] > max) {
+            max = arr[i]; //최댓값 계속 갱신시켜줌
+            ans = 'A' + i; //최댓값이 유일무이할때
+        }                  //a[i] - 'a', a[i] - 'A' 에서 어긋나있던 부분 처리해줌.
+
+    printf("%c", ans);
+    return 0;
+}
