@@ -1,0 +1,39 @@
+#define _CRT_SECURE_NO_WARNINGS 
+#include<stdio.h>
+#include<string.h>
+//펠린드롬 판단 문제
+
+int cnt;
+
+//글자가 주어지면 양 끝에서부터 범위를 좁혀 같은 글자인지 판단해주는 함수
+int recursion(const char* s, int l, int r) {
+    cnt++; //recursion함수 총 호출 횟수를 출력해주기 위함
+    if (l >= r) return 1; 
+    /*한글자는 펠린드롬에 속함. = 은 이를 판단하기 위함이고
+    >은 양끝에 비교과정을 모두 통과하고, 가장 가운데 쌍 통과하고 나면 펠린드롬이 맞기에
+    l이 r보다 커지므로 이를 펠린드롬으로 확정하기 위해 추가함.*/
+    else if (s[l] != s[r]) return 0;
+    //끝에서부터 맞는 문자가 서로 다르면 펠린드롬이 아니므로 이를 판단하기 위함.
+    else {
+        return recursion(s, l + 1, r - 1); //끝에서부터 줄여가며 비교하기 위함.
+    }
+}
+
+int isPalindrome(const char* s) {
+    return recursion(s, 0, strlen(s) - 1);
+    //recursion함수의 최종 반환값을 main함수에서 print해주기 위함.
+}
+
+int main() {
+    int T, pal, i;
+    scanf("%d", &T); //몇개의 단어를 펠린드롬 판단할 것인지를 위함.
+    char S[1001];
+    for (i = 0; i < T; i++) {
+        cnt = 0; 
+        //입력받는 서로 다른 문자마다 전 문자의 카운트 횟수에 영향을 받지 않도록 호출횟수 초기화가 필요함.
+        scanf("%s", &S); //영단어 입력받기
+        pal = isPalindrome(S); //펠린드롬 여부 판단
+        printf("%d %d\n", pal, cnt);
+    }
+    return 0;
+}
