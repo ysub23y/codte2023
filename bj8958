@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <string.h>
+//o는 문제를 맞은 것, x는 틀린 것.
+//맞은 경우, 연속된 o의 개수만큼 1증가해서 더해짐
+
+
+int main(void) {
+
+    int input, score, sum;
+    char test[80];
+
+    scanf("%d", &input); //input은 문제 갯수로 숫자입력. 총 몇개의 문제가 있었는가에 대함.
+
+    for (int i = 0; i < input; i++) {
+        sum = 0;
+        score = 1;//맞은 것만 점수로 들어가기 때문
+        scanf("%s", test);//ox입력받음.
+        for (int j = 0; j < strlen(test); j++) {
+            if (test[j] == 'O') {
+                sum += score; 
+                score++;//시그마 1~연속된 O개수만큼이므로 ++해줘야함.
+            }
+            if (test[j] == 'X')  score = 1; //X일때 score초기화해주면 O나올때 정상적으로 다시 1부터 증가됨.
+        }
+        printf("%d\n", sum);
+    }
+}
